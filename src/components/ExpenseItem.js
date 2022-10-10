@@ -1,15 +1,13 @@
-import './ExpenseItem.css';
+import Expensedate  from './ExpenseDate';
+import ExpenseDetails from './ExpenseDetails';
+
 
 function ExpenseItem(props){
-    
     return (
         <div className='expense-item'>
-            <div className='items'>{props.ExpenseCount}</div>
-            <div className='expense-item__description'>
-                <h2>{props.ExpenseType}</h2>
-                <h2>{props.ExpenseLocation}</h2>
-                <div className='expense-item__price'>{props.ExpenseCost}</div>
-            </div>
+            <Expensedate ExpenseDate={props.ExpenseDate}/>
+            <ExpenseDetails  ExpenseCount={props.ExpenseCount}  ExpenseType={props.ExpenseType} 
+            ExpenseLocation={props.ExpenseLocation}  ExpenseCost={props.ExpenseCost}/>
         </div>        
     );
 }
