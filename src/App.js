@@ -1,4 +1,6 @@
 import ExpenseItem from "./components/ExpenseItem";
+import Card from "./components/Card";
+
 
 function App() {
 
@@ -38,7 +40,7 @@ function App() {
   ];
 
   return (
-    <div>
+    <Card>
       <h1>Let's get started!</h1>
       <h1>Expense items..</h1>
       <ExpenseItem
@@ -75,7 +77,7 @@ function App() {
       ExpenseCost={ExpenseArrayList[3].itemCost}
       >
       </ExpenseItem>
-    </div>
+    </Card>
 
   );
 }
