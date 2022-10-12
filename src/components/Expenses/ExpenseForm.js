@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 
 import './ExpenseForm.css';
-function ExpenseForm(){
+function ExpenseForm(props){
 
     const [TitleVal, setTitleVal] = useState('');
     const [AmountVal, setAmountVal] = useState('');
@@ -28,8 +28,13 @@ function ExpenseForm(){
             amount : AmountVal,
             date : new Date(DateVal)
         }
-
-        console.log(expenseData);
+        // Communicating with App.js 
+        props.actionAfterSubmit(expenseData);
+        
+        // after submit user inputs, it make back to empty string 
+        setTitleVal('');
+        setAmountVal('');
+        setDateVal('');
 
     } 
 
@@ -39,15 +44,15 @@ function ExpenseForm(){
             <div className="new-expense__controls">
                 <div className="new-expense__controls">
                     <label>Title</label>
-                    <input type='text' onChange={updateTitle}></input>
+                    <input type='text' value={TitleVal} onChange={updateTitle}></input>
                 </div>
                 <div className="new-expense__controls">
                     <label>Amount</label>
-                    <input type='number' onChange={updateAmount}></input>
+                    <input type='number' value={AmountVal} onChange={updateAmount}></input>
                 </div>
                 <div className="new-expense__controls">
                     <label>Date</label>
-                    <input type='date' onChange={updateDate}></input>
+                    <input type='date' value={DateVal} onChange={updateDate}></input>
                 </div>
             </div>
             <div className="new-expense__actions">
