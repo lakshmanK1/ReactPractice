@@ -54,11 +54,20 @@ const App = () => {
   //   ExpenseLocation:ExpenseArrayList[2].expenditureLocation,ExpenseCost:ExpenseArrayList[2].itemCost}),
   //   React.createElement(ExpenseItem,{ExpenseDate:ExpenseArrayList[3].expensedate,ExpenseCount:ExpenseArrayList[3].count,ExpenseType:ExpenseArrayList[3].itemType,
   //   ExpenseLocation:ExpenseArrayList[3].expenditureLocation,ExpenseCost:ExpenseArrayList[3].itemCost}));
+
+
+  const onFormSubmit = (formInputArg) => {
+    const expenseData = {
+      ...formInputArg,
+      id:Math.random().toString()
+    }
+    console.log(expenseData);
+  }
  
   return (
     <Card>
       <h1>Expense items..</h1>
-      <ExpenseForm></ExpenseForm>
+      <ExpenseForm actionAfterSubmit={onFormSubmit} />
       <ExpenseItem
       ExpenseDate ={ExpenseArrayList[0].expensedate}
       ExpenseCount={ExpenseArrayList[0].count}
