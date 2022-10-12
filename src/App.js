@@ -2,6 +2,7 @@
 
 import ExpenseItem from './components/Expenses/ExpenseItem';
 import Card from './components/UI/Card';
+import ExpenseForm from './components/Expenses/ExpenseForm';
 
 const App = () => {
 
@@ -56,8 +57,8 @@ const App = () => {
  
   return (
     <Card>
-      <h1>Let's get started!</h1>
       <h1>Expense items..</h1>
+      <ExpenseForm></ExpenseForm>
       <ExpenseItem
       ExpenseDate ={ExpenseArrayList[0].expensedate}
       ExpenseCount={ExpenseArrayList[0].count}
