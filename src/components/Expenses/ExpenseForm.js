@@ -1,65 +1,91 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import './ExpenseForm.css';
-function ExpenseForm(props){
 
-    const [TitleVal, setTitleVal] = useState('');
-    const [AmountVal, setAmountVal] = useState('');
-    const [DateVal, setDateVal] = useState('');
+const ExpenseForm = (props) => {
+  const [enteredTitle, setEnteredTitle] = useState('');
+  const [enteredAmount, setEnteredAmount] = useState('');
+  const [enteredDate, setEnteredDate] = useState('');
+  const [enteredLocation, setEnteredLocation] = useState('');
 
 
-    const updateTitle = (event) => {
-        setTitleVal(event.target.value);
-    }
+  const titleChangeHandler = (event) => {
+    setEnteredTitle(event.target.value);
+  };
 
-    const updateAmount = (event) => {
-        setAmountVal(event.target.value);
-    }
+  const amountChangeHandler = (event) => {
+    setEnteredAmount(event.target.value);
+  };
 
-    const updateDate = (event) => {
-        setDateVal(event.target.value);
-    }
+  const dateChangeHandler = (event) => {
+    setEnteredDate(event.target.value);
+  };
+  const locationChangeHandler = (event) => {
+    setEnteredLocation(event.target.value);
+  };
 
-    const submitData = (event) => {
-        event.preventDefault();
+  const submitHandler = (event) => {
+    event.preventDefault();
 
-        const expenseData = {
-            title : TitleVal,
-            amount : AmountVal,
-            date : new Date(DateVal)
-        }
-        // Communicating with App.js 
-        props.actionAfterSubmit(expenseData);
-        
-        // after submit user inputs, it make back to empty string 
-        setTitleVal('');
-        setAmountVal('');
-        setDateVal('');
+    const expenseData = {
+      title: enteredTitle,
+      amount: enteredAmount,
+      date: new Date(enteredDate),
+      location: enteredLocation,
+    };
 
-    } 
+    props.onSaveExpenseData(expenseData);
+    setEnteredTitle('');
+    setEnteredAmount('');
+    setEnteredDate('');
+    setEnteredLocation('');
+  };
 
-    return(
-        <div className="new-expense">
-        <form onSubmit={submitData}>
-            <div className="new-expense__controls">
-                <div className="new-expense__controls">
-                    <label>Title</label>
-                    <input type='text' value={TitleVal} onChange={updateTitle}></input>
-                </div>
-                <div className="new-expense__controls">
-                    <label>Amount</label>
-                    <input type='number' value={AmountVal} onChange={updateAmount}></input>
-                </div>
-                <div className="new-expense__controls">
-                    <label>Date</label>
-                    <input type='date' value={DateVal} onChange={updateDate}></input>
-                </div>
-            </div>
-            <div className="new-expense__actions">
-                <button type="submit">Add Expense</button>
-            </div>
-        </form>
+  return (
+    <form onSubmit={submitHandler}>
+      <div className='new-expense__controls'>
+        <div className='new-expense__control'>
+          <label>Title</label>
+          <input
+            type='text'
+            value={enteredTitle}
+            onChange={titleChangeHandler}
+          />
         </div>
-    );
-}
+        <div className='new-expense__control'>
+          <label>Amount</label>
+          <input
+            type='number'
+            min='0.01'
+            step='0.01'
+            value={enteredAmount}
+            onChange={amountChangeHandler}
+          />
+        </div>
+        <div className='new-expense__control'>
+          <label>Date</label>
+          <input
+            type='date'
+            min='2019-01-01'
+            max='2022-12-31'
+            value={enteredDate}
+            onChange={dateChangeHandler}
+          />
+        </div>
+        <div className='new-expense__control'>
+          <label>Location</label>
+          <input
+            type='text'
+            value={enteredLocation}
+            onChange={locationChangeHandler}
+          />
+        </div>
+      </div>
+      <div className='new-expense__actions'>
+        <button type='submit'>Add Expense</button>
+      </div>
+    </form>
+  );
+};
+
 export default ExpenseForm;
